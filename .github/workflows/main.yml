@@ -5,7 +5,7 @@ with:
   project_id: 'clean-sylph-318816'
   registry: 'gcr.io'
   image_name: 'dev-fe'
-  cluster: 'mytestcluster'
-  namespace: 'default'
+  cluster: 'autopilot-cluster-1'
+  namespace: 'kube-system'
   deployment: 'front-end-dep'
-  container: 'front-end'
+  container: 
