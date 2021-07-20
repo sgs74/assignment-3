@@ -8,7 +8,7 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-steps:
+
   - uses: actions/checkout@v2
     name: Check out code
 
@@ -21,6 +21,7 @@ steps:
       dockerfile: Dockerfile.ci
       username: ${{ secrets.DOCKER_USERNAME }}
       password: ${{ secrets.DOCKER_PASSWORD }}
+
 
 
 
