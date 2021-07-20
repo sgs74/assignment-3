@@ -1,16 +1,13 @@
-steps:
-  - uses: actions/checkout@v2
-    name: Check out code
-   
+nname: ci
+
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - 'master'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
 steps:
   - uses: actions/checkout@v2
     name: Check out code
@@ -24,3 +21,6 @@ steps:
       dockerfile: Dockerfile.ci
       username: ${{ secrets.DOCKER_USERNAME }}
       password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+
