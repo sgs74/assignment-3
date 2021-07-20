@@ -6,6 +6,6 @@ with:
   registry: 'gcr.io'
   image_name: 'dev-fe'
   cluster: 'autopilot-cluster-1'
-  namespace: 'kube-system'
+  namespace: 'default'
   deployment: 'front-end-dep'
-  container: 
+  container: 'front-end'
