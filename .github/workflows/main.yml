@@ -1,11 +1,13 @@
-uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
-with:
-  service_account: ${{ secrests.GCLOUD_AUTH}} 
-  zone: us-central1-c
-  project_id: clean-sylph-318816
-  registry: gcr.io
-  image_name: dev-fe
-  cluster: autopilot-cluster-1
-  namespace: default
-  deployment: front-end-dep
-  container: front-end
+steps:
+  - uses: actions/checkout@v2
+    name: Check out code
+
+  - uses: mr-smithers-excellent/docker-build-push@v5
+    name: Build & push Docker image
+    with:
+      image: repo/image
+      tags: v1, latest
+      registry: registry-url.io
+      dockerfile: Dockerfile.ci
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: ${{ secrets.DOCKER_PASSWORD }}
