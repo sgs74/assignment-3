@@ -1,6 +1,6 @@
 nname: ci
 
- on:
+on:
   push:
     branches:
       - 'master'
