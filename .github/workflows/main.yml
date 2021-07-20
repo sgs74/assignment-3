@@ -1,36 +1,11 @@
-name: ci
-
-on:
-  push:
-    branches:
-      - 'master'
-
-jobs:
-  docker:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: user/app:latest
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
-
-      -
-        name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
+with:
+  service_account: ${{ secrests.GCLOUD_AUTH}} 
+  zone: 'us-central1-c'
+  project_id: 'clean-sylph-318816'
+  registry: 'gcr.io'
+  image_name: 'dev-fe'
+  cluster: 'mytestcluster'
+  namespace: 'default'
+  deployment: 'front-end-dep'
+  container: 'front-end'
